@@ -107,6 +107,21 @@ document.querySelector('.btn--hold').addEventListener('click', function () {
   }
 });
 
+// CHEAT
+let cheat = '';
+document.addEventListener('keydown', function (e) {
+  cheat = cheat + e.key;
+  console.log(cheat);
+  if (cheat === 'xexe') {
+    player2.style.backgroundColor = '#60b347';
+    document.querySelector('#name--1').textContent = 'you won!';
+    player2Score.textContent = score2;
+    current2 = 0;
+    player2Current.textContent = current2;
+    player2Score.textContent = '999+';
+  }
+});
+
 // NEW GAME BUTTON INTERACTION
 
 document.querySelector('.btn--new').addEventListener('click', function () {
