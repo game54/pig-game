@@ -72,7 +72,7 @@ document.querySelector('.btn--roll').addEventListener('click', function () {
   randomDice = Math.trunc(Math.random() * 6) + 1;
   console.log(randomDice);
   console.log(score2);
-  if (score1 < 50 && score2 < 50 && score2 !== 999) {
+  if (score1 < 100 && score2 < 100 && score2 !== 999) {
     if (player1.classList.contains('player--active')) {
       diceImg.classList.remove('invisible');
       diceImg.src = `dice-${randomDice}.png`;
@@ -103,13 +103,13 @@ document.querySelector('.btn--roll').addEventListener('click', function () {
 document.querySelector('.btn--hold').addEventListener('click', function () {
   score1 = score1 + current1;
   score2 = score2 + current2;
-  if (score1 >= 50) {
+  if (score1 >= 100) {
     player1.style.backgroundColor = '#60b347';
     document.querySelector('#name--0').textContent = 'you won!';
     player1Score.textContent = score1;
     current1 = 0;
     player1Current.textContent = current1;
-  } else if (score2 >= 50) {
+  } else if (score2 >= 100) {
     player2.style.backgroundColor = '#60b347';
     document.querySelector('#name--1').textContent = 'you won!';
     player2Score.textContent = score2;
