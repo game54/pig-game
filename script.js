@@ -19,37 +19,37 @@ let randomDice = 0;
 
 // ROLL DICE FUNCTION
 
-const diceRoll = function (item) {
-  if (randomDice === 1) {
-    diceImg.classList.remove('invisible');
-    document.querySelector('.dice').src = 'dice-1.png';
-    item = 0;
-    player1.classList.toggle('player--active');
-    player2.classList.toggle('player--active');
-  } else if (randomDice === 2) {
-    diceImg.classList.remove('invisible');
-    document.querySelector('.dice').src = 'dice-2.png';
-    item = item + 2;
-  } else if (randomDice === 3) {
-    diceImg.classList.remove('invisible');
-    document.querySelector('.dice').src = 'dice-3.png';
-    item = item + 3;
-  } else if (randomDice === 4) {
-    diceImg.classList.remove('invisible');
-    document.querySelector('.dice').src = 'dice-4.png';
-    item = item + 4;
-  } else if (randomDice === 5) {
-    diceImg.classList.remove('invisible');
-    document.querySelector('.dice').src = 'dice-5.png';
-    item = item + 5;
-  } else if (randomDice === 6) {
-    diceImg.classList.remove('invisible');
-    document.querySelector('.dice').src = 'dice-6.png';
-    item = item + 6;
-  }
-  console.log(item + 'item');
-  return item;
-};
+// const diceRoll = function (item) {
+//   if (randomDice === 1) {
+//     diceImg.classList.remove('invisible');
+//     document.querySelector('.dice').src = 'dice-1.png';
+//     item = 0;
+//     player1.classList.toggle('player--active');
+//     player2.classList.toggle('player--active');
+//   } else if (randomDice === 2) {
+//     diceImg.classList.remove('invisible');
+//     document.querySelector('.dice').src = 'dice-2.png';
+//     item = item + 2;
+//   } else if (randomDice === 3) {
+//     diceImg.classList.remove('invisible');
+//     document.querySelector('.dice').src = 'dice-3.png';
+//     item = item + 3;
+//   } else if (randomDice === 4) {
+//     diceImg.classList.remove('invisible');
+//     document.querySelector('.dice').src = 'dice-4.png';
+//     item = item + 4;
+//   } else if (randomDice === 5) {
+//     diceImg.classList.remove('invisible');
+//     document.querySelector('.dice').src = 'dice-5.png';
+//     item = item + 5;
+//   } else if (randomDice === 6) {
+//     diceImg.classList.remove('invisible');
+//     document.querySelector('.dice').src = 'dice-6.png';
+//     item = item + 6;
+//   }
+//   console.log(item + 'item');
+//   return item;
+// };
 
 // FUNCTION TO SET CURRENT 0 AND DISPLAY SCORE ON EACH PLAYER
 
@@ -71,13 +71,29 @@ player2Score.textContent = score2;
 document.querySelector('.btn--roll').addEventListener('click', function () {
   randomDice = Math.trunc(Math.random() * 6) + 1;
   console.log(randomDice);
-  if (score1 < 50 && score2 < 50) {
+  console.log(score2);
+  if (score1 < 50 && score2 < 50 && score2 !== 999) {
     if (player1.classList.contains('player--active')) {
-      current1 = diceRoll(current1);
+      diceImg.classList.remove('invisible');
+      diceImg.src = `dice-${randomDice}.png`;
+      current1 += randomDice;
       player1Current.textContent = current1;
+      if (randomDice === 1) {
+        current1 = 0;
+        player1Current.textContent = current1;
+        player1.classList.toggle('player--active');
+        player2.classList.toggle('player--active');
+      }
     } else {
-      current2 = diceRoll(current2);
+      diceImg.src = `dice-${randomDice}.png`;
+      current2 += randomDice;
       player2Current.textContent = current2;
+      if (randomDice === 1) {
+        current2 = 0;
+        player2Current.textContent = current2;
+        player1.classList.toggle('player--active');
+        player2.classList.toggle('player--active');
+      }
     }
   }
 });
@@ -118,7 +134,8 @@ document.addEventListener('keydown', function (e) {
     player2Score.textContent = score2;
     current2 = 0;
     player2Current.textContent = current2;
-    player2Score.textContent = '999+';
+    score2 = 999;
+    player2Score.textContent = score2;
   }
 });
 
